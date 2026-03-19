@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加入我们 - 沐非特科技有限公司</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1a2a4a 0%, #2a3a5a 50%, #1a4a6a 100%);
+            color: #2a3a4a;
+            line-height: 1.6;
+        }
+
+        /* 顶部导航 */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(0, 150, 255, 0.3);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0096ff;
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 42px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo span {
+            color: #ff6b6b;
+        }
+
+        .nav-links a {
+            color: #4a5a6a;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #0096ff;
+        }
+
+        #lang-switch {
+            margin-left: 1.5rem;
+            padding: 5px 10px;
+            border: 1px solid #00a8ff;
+            border-radius: 5px;
+            background: #ffffff;
+            color: #00a8ff;
+            cursor: pointer;
+        }
+
+        /* Hero 区域 */
+        .hero {
+            padding: 180px 5% 100px;
+            text-align: center;
+            background: radial-gradient(ellipse at center, rgba(0, 180, 255, 0.15) 0%, rgba(255, 150, 100, 0.1) 50%, transparent 70%);
+        }
+
+        .hero-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero-logo img {
+            height: 120px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 18px;
+            box-shadow: 0 8px 40px rgba(0, 150, 255, 0.25), 0 2px 12px rgba(0,0,0,0.10);
+            background: rgba(255,255,255,0.85);
+            padding: 10px 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero-logo img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 50px rgba(0, 150, 255, 0.4), 0 4px 16px rgba(0,0,0,0.13);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #00a8ff, #ff6b9d, #ffcc00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #5a6a7a;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* 招聘板块 */
+        .recruitment {
+            padding: 80px 5%;
+            background: linear-gradient(180deg, #fff9f5, #f5f8ff);
+            min-height: calc(100vh - 400px);
+        }
+
+        .recruitment-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: #0096ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: #6a7a8a;
+            font-size: 1.1rem;
+        }
+
+        .recruitment-benefits {
+            margin-bottom: 60px;
+        }
+
+        .recruitment-benefits h3,
+        .recruitment-positions h3,
+        .recruitment-cta h3 {
+            font-size: 1.8rem;
+            color: #0096ff;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .benefit-item {
+            background: linear-gradient(135deg, #ffffff, #f8fcff);
+            padding: 25px;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 180, 255, 0.15);
+            transition: all 0.3s;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 180, 255, 0.2);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-text h4 {
+            color: #0096ff;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .benefit-text p {
+            color: #6a7a8a;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .recruitment-positions {
+            margin-bottom: 60px;
+        }
+
+        .position-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .position-item {
+            background: linear-gradient(135deg, #ffffff, #f8fcff);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid #ff6b9d;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .position-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.2);
+        }
+
+        .position-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .position-header h4 {
+            color: #2a3a4a;
+            font-size: 1.3rem;
+            margin: 0;
+        }
+
+        .position-tag {
+            background: linear-gradient(90deg, #ff6b9d, #ff9600);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .position-item p {
+            color: #6a7a8a;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .position-footer {
+            display: flex;
+            justify-content: space-between;
+            color: #ff9600;
+            font-weight: bold;
+        }
+
+        .recruitment-cta {
+            text-align: center;
+            background: linear-gradient(135deg, #fff5f8, #f0f8ff);
+            padding: 50px;
+            border-radius: 16px;
+            border: 2px dashed rgba(0, 180, 255, 0.3);
+        }
+
+        .recruitment-cta h3 {
+            margin-bottom: 20px;
+        }
+
+        .recruitment-cta p {
+            color: #6a7a8a;
+            font-size: 1.1rem;
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+
+        .recruitment-cta .cta-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 50px;
+            background: linear-gradient(90deg, #00a8ff, #ff6b9d);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(0, 168, 255, 0.3);
+        }
+
+        .recruitment-cta .cta-btn:hover {
+            background: linear-gradient(90deg, #ff6b9d, #ffcc00);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        }
+
+        /* 底部 */
+        .footer {
+            text-align: center;
+            padding: 40px 5%;
+            background: linear-gradient(90deg, #00a8ff, #ff6b9d);
+            color: #ffffff;
+            font-size: 0.9rem;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <nav class="nav">
+            <a href="mufet_products.html" class="logo">
+                <img src="logo.jpg" alt="沐非特科技 Logo" onerror="this.style.display='none'">
+                MOSFET<span> TECH</span>
+            </a>
+            <div class="nav-links">
+                <a href="mufet_products.html#products" data-i18n="nav-products">产品中心</a>
+                <a href="mufet_products.html" data-i18n="nav-about">返回主页</a>
+                <a href="mufet_products.html#contact" data-i18n="nav-contact">联系我们</a>
+                <select id="lang-switch" onchange="switchLanguage(this.value)">
+                    <option value="zh">中文</option>
+                    <option value="en">English</option>
+                    <option value="ja">日本語</option>
+                    <option value="ko">한국어</option>
+                </select>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero 区域 -->
+    <section class="hero">
+        <div class="hero-logo">
+            <img src="logo.jpg" alt="沐非特科技 Logo" onerror="this.style.display='none'">
+        </div>
+        <h1 data-i18n="hero-title">加入我们 · 共创未来</h1>
+        <p data-i18n="hero-desc">沐非特科技，寻找充满激情的你，一起打造智能电子产品的新纪元</p>
+    </section>
+
+    <!-- 招聘板块 -->
+    <section class="recruitment">
+        <div class="recruitment-content">
+            <div class="section-title">
+                <h2 data-i18n="recruitment-title">加入我们</h2>
+                <p data-i18n="recruitment-subtitle">与精英同行，共创未来</p>
+            </div>
+
+            <div class="recruitment-benefits">
+                <h3 data-i18n="benefits-title">我们提供</h3>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💰</div>
+                        <div class="benefit-text">
+                            <h4 data-i18n="benefit1-title">有竞争力的薪酬</h4>
+                            <p data-i18n="benefit1-desc">高于行业平均水平的薪资待遇，年度调薪机会</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🏥</div>
+                        <div class="benefit-text">
+                            <h4 data-i18n="benefit2-title">完善的福利保障</h4>
+                            <p data-i18n="benefit2-desc">五险一金、商业保险、年度体检、带薪年假</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">📈</div>
+                        <div class="benefit-text">
+                            <h4 data-i18n="benefit3-title">成长空间广阔</h4>
+                            <p data-i18n="benefit3-desc">完善的培训体系、导师制度、快速晋升通道</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🎯</div>
+                        <div class="benefit-text">
+                            <h4 data-i18n="benefit4-title">弹性工作制</h4>
+                            <p data-i18n="benefit4-desc">灵活的工作时间，远程办公机会，工作生活平衡</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🎁</div>
+                        <div class="benefit-text">
+                            <h4 data-i18n="benefit5-title">丰富的员工活动</h4>
+                            <p data-i18n="benefit5-desc">团建活动、节日福利、生日礼物、健身补贴</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🚀</div>
+                        <div class="benefit-text">
+                            <h4 data-i18n="benefit6-title">股权激励</h4>
+                            <p data-i18n="benefit6-desc">核心员工股权激励计划，共享公司成长红利</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recruitment-positions">
+                <h3 data-i18n="positions-title">热招职位</h3>
+                <div class="position-list">
+                    <div class="position-item">
+                        <div class="position-header">
+                            <h4 data-i18n="pos1-title">嵌入式软件工程师</h4>
+                            <span class="position-tag" data-i18n="pos1-tag">热招</span>
+                        </div>
+                        <p data-i18n="pos1-desc">负责智能硬件底层驱动开发，熟悉ARM架构，精通C/C++语言</p>
+                        <div class="position-footer">
+                            <span data-i18n="pos1-salary">5K-8K</span>
+                        </div>
+                    </div>
+                    <div class="position-item">
+                        <div class="position-header">
+                            <h4 data-i18n="pos2-title">算法工程师（音频方向）</h4>
+                            <span class="position-tag" data-i18n="pos2-tag">急聘</span>
+                        </div>
+                        <p data-i18n="pos2-desc">负责音频算法研发，熟悉DSP、降噪算法，有相关项目经验优先</p>
+                        <div class="position-footer">
+                            <span data-i18n="pos2-salary">6K-9K</span>
+                        </div>
+                    </div>
+                    <div class="position-item">
+                        <div class="position-header">
+                            <h4 data-i18n="pos3-title">UI/UX设计师</h4>
+                            <span class="position-tag" data-i18n="pos3-tag">热招</span>
+                        </div>
+                        <p data-i18n="pos3-desc">负责APP及产品界面设计，熟练使用Figma/Sketch，有智能硬件经验优先</p>
+                        <div class="position-footer">
+                            <span data-i18n="pos3-salary">4K-7K</span>
+                        </div>
+                    </div>
+                    <div class="position-item">
+                        <div class="position-header">
+                            <h4 data-i18n="pos4-title">产品经理</h4>
+                            <span class="position-tag" data-i18n="pos4-tag">热招</span>
+                        </div>
+                        <p data-i18n="pos4-desc">负责智能产品规划与设计，熟悉物联网产品，具备优秀的沟通协调能力</p>
+                        <div class="position-footer">
+                            <span data-i18n="pos4-salary">6K-9K</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recruitment-cta">
+                <h3 data-i18n="cta-title">期待你的加入</h3>
+                <p data-i18n="cta-desc">如果你对智能科技充满热情，渴望在创业平台施展才华，我们期待与你相遇！</p>
+                <p data-i18n="cta-email">简历投递：2258438065@qq.com</p>
+                <p data-i18n="cta-person">联系人：曾少通</p>
+                <a href="mailto:2258438065@qq.com" class="cta-btn" data-i18n="cta-btn">立即投递</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <p data-i18n="footer-copyright">© 2026 沐非特科技有限公司 | MOSFET TECHNOLOGY</p>
+        <p data-i18n="footer-contact">联系方式：2258438065@qq.com | 电话：18186023396</p>
+        <p data-i18n="footer-contact2">联系人：曾少通</p>
+        <p data-i18n="footer-address">地址：上海市奉贤区莘奉公路4869号1层</p>
+    </footer>
+
+    <script>
+        // 语言切换配置
+        const translations = {
+            zh: {
+                "nav-products": "产品中心",
+                "nav-about": "返回主页",
+                "nav-contact": "联系我们",
+                "hero-title": "加入我们 · 共创未来",
+                "hero-desc": "沐非特科技，寻找充满激情的你，一起打造智能电子产品的新纪元",
+                "recruitment-title": "加入我们",
+                "recruitment-subtitle": "与精英同行，共创未来",
+                "benefits-title": "我们提供",
+                "benefit1-title": "有竞争力的薪酬",
+                "benefit1-desc": "高于行业平均水平的薪资待遇，年度调薪机会",
+                "benefit2-title": "完善的福利保障",
+                "benefit2-desc": "五险一金、商业保险、年度体检、带薪年假",
+                "benefit3-title": "成长空间广阔",
+                "benefit3-desc": "完善的培训体系、导师制度、快速晋升通道",
+                "benefit4-title": "弹性工作制",
+                "benefit4-desc": "灵活的工作时间，远程办公机会，工作生活平衡",
+                "benefit5-title": "丰富的员工活动",
+                "benefit5-desc": "团建活动、节日福利、生日礼物、健身补贴",
+                "benefit6-title": "股权激励",
+                "benefit6-desc": "核心员工股权激励计划，共享公司成长红利",
+                "positions-title": "热招职位",
+                "pos1-title": "嵌入式软件工程师",
+                "pos1-tag": "热招",
+                "pos1-desc": "负责智能硬件底层驱动开发，熟悉ARM架构，精通C/C++语言",
+                "pos1-salary": "5K-8K",
+                "pos2-title": "算法工程师（音频方向）",
+                "pos2-tag": "急聘",
+                "pos2-desc": "负责音频算法研发，熟悉DSP、降噪算法，有相关项目经验优先",
+                "pos2-salary": "6K-9K",
+                "pos3-title": "UI/UX设计师",
+                "pos3-tag": "热招",
+                "pos3-desc": "负责APP及产品界面设计，熟练使用Figma/Sketch，有智能硬件经验优先",
+                "pos3-salary": "4K-7K",
+                "pos4-title": "产品经理",
+                "pos4-tag": "热招",
+                "pos4-desc": "负责智能产品规划与设计，熟悉物联网产品，具备优秀的沟通协调能力",
+                "pos4-salary": "6K-9K",
+                "cta-title": "期待你的加入",
+                "cta-desc": "如果你对智能科技充满热情，渴望在创业平台施展才华，我们期待与你相遇！",
+                "cta-email": "简历投递：2258438065@qq.com",
+                "cta-person": "联系人：曾少通",
+                "cta-btn": "立即投递",
+                "footer-copyright": "© 2026 沐非特科技有限公司 | MOSFET TECHNOLOGY",
+                "footer-contact": "联系方式：2258438065@qq.com | 电话：18186023396",
+                "footer-contact2": "联系人：曾少通",
+                "footer-address": "地址：上海市奉贤区莘奉公路4869号1层"
+            },
+            en: {
+                "nav-products": "Products",
+                "nav-about": "Back to Home",
+                "nav-contact": "Contact Us",
+                "hero-title": "Join Us · Create Future Together",
+                "hero-desc": "Mufet Technology is looking for passionate people like you to create a new era of smart electronic products",
+                "recruitment-title": "Join Us",
+                "recruitment-subtitle": "Walk with Elite, Create Future Together",
+                "benefits-title": "What We Offer",
+                "benefit1-title": "Competitive Salary",
+                "benefit1-desc": "Above-industry average salary, annual salary adjustment opportunities",
+                "benefit2-title": "Comprehensive Benefits",
+                "benefit2-desc": "Social insurance and housing fund, commercial insurance, annual health check, paid annual leave",
+                "benefit3-title": "Broad Growth Space",
+                "benefit3-desc": "Perfect training system, mentor system, fast promotion channel",
+                "benefit4-title": "Flexible Work System",
+                "benefit4-desc": "Flexible working hours, remote work opportunities, work-life balance",
+                "benefit5-title": "Rich Employee Activities",
+                "benefit5-desc": "Team building activities, holiday benefits, birthday gifts, fitness subsidies",
+                "benefit6-title": "Equity Incentive",
+                "benefit6-desc": "Core employee equity incentive plan, share company growth dividends",
+                "positions-title": "Hot Positions",
+                "pos1-title": "Embedded Software Engineer",
+                "pos1-tag": "Hot",
+                "pos1-desc": "Responsible for smart hardware driver development, familiar with ARM architecture, proficient in C/C++",
+                "pos1-salary": "5K-8K",
+                "pos2-title": "Algorithm Engineer (Audio)",
+                "pos2-tag": "Urgent",
+                "pos2-desc": "Responsible for audio algorithm R&D, familiar with DSP and noise reduction algorithms, related project experience preferred",
+                "pos2-salary": "6K-9K",
+                "pos3-title": "UI/UX Designer",
+                "pos3-tag": "Hot",
+                "pos3-desc": "Responsible for APP and product interface design, skilled in Figma/Sketch, smart hardware experience preferred",
+                "pos3-salary": "4K-7K",
+                "pos4-title": "Product Manager",
+                "pos4-tag": "Hot",
+                "pos4-desc": "Responsible for smart product planning and design, familiar with IoT products, excellent communication skills",
+                "pos4-salary": "6K-9K",
+                "cta-title": "Looking Forward to Your Join",
+                "cta-desc": "If you are passionate about smart technology and eager to showcase your talent on a startup platform, we look forward to meeting you!",
+                "cta-email": "Email: 2258438065@qq.com",
+                "cta-person": "Contact: 曾少通",
+                "cta-btn": "Apply Now",
+                "footer-copyright": "© 2026 沐非特科技有限公司 | MOSFET TECHNOLOGY",
+                "footer-contact": "Contact: 2258438065@qq.com | Phone: 18186023396",
+                "footer-contact2": "Contact: 曾少通",
+                "footer-address": "Address: 1st Floor, No. 4869 Xinfeng Highway, Fengxian District, Shanghai"
+            },
+            ja: {
+                "nav-products": "製品センター",
+                "nav-about": "ホームに戻る",
+                "nav-contact": "お問い合わせ",
+                "hero-title": "採用情報 · 未来を創る",
+                "hero-desc": "MUFETテクノロジーは、情熱あるあなたをお待ちしています。一緒にスマート電子製品の新時代を築きましょう",
+                "recruitment-title": "採用情報",
+                "recruitment-subtitle": "エリートと共に、未来を創る",
+                "benefits-title": "提供する待遇",
+                "benefit1-title": "競争力のある給与",
+                "benefit1-desc": "業界平均以上の給与水準、年次昇給の機会",
+                "benefit2-title": "充実した福利厚生",
+                "benefit2-desc": "社会保険・住宅積立金、商業保険、年次健康診断、有給休暇",
+                "benefit3-title": "広大な成長空間",
+                "benefit3-desc": "完備された研修制度、メンターシステム、早期昇進ルート",
+                "benefit4-title": "フレックスタイム制",
+                "benefit4-desc": "柔軟な勤務時間、リモートワークの機会、ワークライフバランス",
+                "benefit5-title": "豊富な従業員活動",
+                "benefit5-desc": "チームビルディング、祝日福利、誕生日プレゼント、フィットネス手当",
+                "benefit6-title": "株式インセンティブ",
+                "benefit6-desc": "コア従業員株式インセンティブ計画、会社の成長利益を共有",
+                "positions-title": "急募職位",
+                "pos1-title": "組込みソフトウェアエンジニア",
+                "pos1-tag": "急募",
+                "pos1-desc": "スマートハードウェアのドライバー開発担当、ARMアーキテクチャに精通、C/C++言語に熟練",
+                "pos1-salary": "5K-8K",
+                "pos2-title": "アルゴリズムエンジニア（オーディオ）",
+                "pos2-tag": "緊急採用",
+                "pos2-desc": "オーディオアルゴリズム開発担当、DSP・ノイズキャンセルに精通、関連プロジェクト経験優先",
+                "pos2-salary": "6K-9K",
+                "pos3-title": "UI/UXデザイナー",
+                "pos3-tag": "急募",
+                "pos3-desc": "APP・製品インターフェース設計担当、Figma/Sketchに熟練、スマートハードウェア経験優先",
+                "pos3-salary": "4K-7K",
+                "pos4-title": "プロダクトマネージャー",
+                "pos4-tag": "急募",
+                "pos4-desc": "スマート製品の企画・設計担当、IoT製品に精通、優れたコミュニケーション能力",
+                "pos4-salary": "6K-9K",
+                "cta-title": "あなたの参加を心待ちにしています",
+                "cta-desc": "スマートテクノロジーに情熱があり、スタートアップで才能を発揮したい方をお待ちしています！",
+                "cta-email": "応募メール：2258438065@qq.com",
+                "cta-person": "担当者：曾少通",
+                "cta-btn": "今すぐ応募",
+                "footer-copyright": "© 2026 沐非特科技有限公司 | MOSFET TECHNOLOGY",
+                "footer-contact": "連絡先：2258438065@qq.com | 電話：18186023396",
+                "footer-contact2": "担当者：曾少通",
+                "footer-address": "住所：上海市奉賢区莘奉公路4869号1階"
+            },
+            ko: {
+                "nav-products": "제품 센터",
+                "nav-about": "홈으로 돌아가기",
+                "nav-contact": "연락처",
+                "hero-title": "채용 · 미래를 창조하다",
+                "hero-desc": "MUFET 테크놀로지는 열정적인 여러분을 찾고 있습니다. 함께 스마트 전자제품의 새로운 시대를 만들어 갑시다",
+                "recruitment-title": "채용",
+                "recruitment-subtitle": "엘리트와 함께, 미래를 창조하다",
+                "benefits-title": "제공하는 복지",
+                "benefit1-title": "경쟁력 있는 급여",
+                "benefit1-desc": "업계 평균 이상의 급여 수준, 연봉 인상 기회",
+                "benefit2-title": "완벽한 복지 혜택",
+                "benefit2-desc": "사회보험 및 주택적립금, 상업보험, 연간 건강검진, 유급 연차",
+                "benefit3-title": "넓은 성장 공간",
+                "benefit3-desc": "완벽한 교육 시스템, 멘토 제도, 빠른 승진 채널",
+                "benefit4-title": "유연 근무제",
+                "benefit4-desc": "유연한 근무 시간, 재택근무 기회, 워라밸",
+                "benefit5-title": "풍부한 직원 활동",
+                "benefit5-desc": "팀 빌딩, 명절 복지, 생일 선물, 피트니스 지원금",
+                "benefit6-title": "주식 인센티브",
+                "benefit6-desc": "핵심 직원 주식 인센티브 계획, 회사 성장 이익 공유",
+                "positions-title": "채용 중인 직위",
+                "pos1-title": "임베디드 소프트웨어 엔지니어",
+                "pos1-tag": "급채용",
+                "pos1-desc": "스마트 하드웨어 드라이버 개발 담당, ARM 아키텍처 숙지, C/C++ 능숙",
+                "pos1-salary": "5K-8K",
+                "pos2-title": "알고리즘 엔지니어 (오디오)",
+                "pos2-tag": "긴급 채용",
+                "pos2-desc": "오디오 알고리즘 개발 담당, DSP, 노이즈 캔슬링 숙지, 관련 프로젝트 경험 우대",
+                "pos2-salary": "6K-9K",
+                "pos3-title": "UI/UX 디자이너",
+                "pos3-tag": "급채용",
+                "pos3-desc": "APP 및 제품 인터페이스 디자인 담당, Figma/Sketch 능숙, 스마트 하드웨어 경험 우대",
+                "pos3-salary": "4K-7K",
+                "pos4-title": "제품 매니저",
+                "pos4-tag": "급채용",
+                "pos4-desc": "스마트 제품 기획 및 디자인 담당, IoT 제품 숙지, 우수한 커뮤니케이션 능력",
+                "pos4-salary": "6K-9K",
+                "cta-title": "당신의 합류를 기다립니다",
+                "cta-desc": "스마트 기술에 열정이 있고 스타트업에서 재능을 발휘하고 싶다면 기다리고 있습니다!",
+                "cta-email": "이메일: 2258438065@qq.com",
+                "cta-person": "담당자: 曾少通",
+                "cta-btn": "지금 지원하기",
+                "footer-copyright": "© 2026 沐非特科技有限公司 | MOSFET TECHNOLOGY",
+                "footer-contact": "연락처: 2258438065@qq.com | 전화: 18186023396",
+                "footer-contact2": "담당자: 曾少通",
+                "footer-address": "주소: 상하이시 봉현구 신펀공로 4869호 1층"
+            }
+        };
+
+        // 切换语言函数
+        function switchLanguage(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            // 保存语言偏好
+            localStorage.setItem('preferredLanguage', lang);
+            document.documentElement.lang = lang;
+        }
+
+        // 页面加载时读取保存的语言偏好
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'zh';
+            const langSwitch = document.getElementById('lang-switch');
+            langSwitch.value = savedLang;
+            switchLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>

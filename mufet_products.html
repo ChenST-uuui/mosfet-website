@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沐非特科技有限公司 - 智能电子产品展示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1a2a4a 0%, #2a3a5a 50%, #1a4a6a 100%);
+            color: #2a3a4a;
+            line-height: 1.6;
+        }
+
+        /* 顶部导航 */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(0, 150, 255, 0.3);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0096ff;
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 42px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo span {
+            color: #ff6b6b;
+        }
+
+        .nav-links a {
+            color: #4a5a6a;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #0096ff;
+        }
+
+        #lang-switch {
+            margin-left: 1.5rem;
+            padding: 5px 10px;
+            border: 1px solid #00a8ff;
+            border-radius: 5px;
+            background: #ffffff;
+            color: #00a8ff;
+            cursor: pointer;
+        }
+
+        /* Hero 区域 */
+        .hero {
+            padding: 180px 5% 100px;
+            text-align: center;
+            background: radial-gradient(ellipse at center, rgba(0, 180, 255, 0.15) 0%, rgba(255, 150, 100, 0.1) 50%, transparent 70%);
+        }
+
+        .hero-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero-logo img {
+            height: 120px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 18px;
+            box-shadow: 0 8px 40px rgba(0, 150, 255, 0.25), 0 2px 12px rgba(0,0,0,0.10);
+            background: rgba(255,255,255,0.85);
+            padding: 10px 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero-logo img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 50px rgba(0, 150, 255, 0.4), 0 4px 16px rgba(0,0,0,0.13);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #00a8ff, #ff6b9d, #ffcc00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #5a6a7a;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero-cta {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-cta .btn {
+            padding: 14px 36px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-cta .btn-primary {
+            background: linear-gradient(135deg, #0096ff 0%, #00d4ff 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 150, 255, 0.4);
+        }
+
+        .hero-cta .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 150, 255, 0.6);
+        }
+
+        .hero-cta .btn-secondary {
+            background: rgba(255, 255, 255, 0.95);
+            color: #0096ff;
+            border: 2px solid #0096ff;
+            box-shadow: 0 4px 20px rgba(0, 150, 255, 0.2);
+        }
+
+        .hero-cta .btn-secondary:hover {
+            transform: translateY(-3px);
+            background: #0096ff;
+            color: #ffffff;
+            box-shadow: 0 8px 30px rgba(0, 150, 255, 0.5);
+        }
+
+        /* 产品展示区 */
+        .products {
+            padding: 80px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: #0096ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: #6a7a8a;
+            font-size: 1.1rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background: linear-gradient(135deg, #ffffff, #f5f8ff);
+            border: 1px solid rgba(0, 180, 255, 0.2);
+            border-radius: 12px;
+            padding: 0;
+            transition: all 0.4s;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 180, 255, 0.25);
+            border-color: rgba(0, 180, 255, 0.5);
+        }
+
+        .product-image {
+            height: 250px;
+            background: linear-gradient(135deg, #e0f4ff, #fff0e0, #ffe0f0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(0, 180, 255, 0.3), rgba(255, 150, 100, 0.2));
+            border-radius: 50%;
+        }
+
+        .product-image span {
+            font-size: 4rem;
+            filter: drop-shadow(0 0 20px rgba(0, 180, 255, 0.4));
+        }
+
+        .product-content {
+            padding: 25px;
+        }
+
+        .product-content h3 {
+            color: #0096ff;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .product-content .tag {
+            display: inline-block;
+            background: linear-gradient(90deg, #00a8ff, #ff6b9d);
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .product-content p {
+            color: #6a7a8a;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .product-specs {
+            background: linear-gradient(90deg, #f0f8ff, #fff5f0);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 3px solid #ff9600;
+        }
+
+        .product-specs span {
+            display: inline-block;
+            color: #6a7a8a;
+            font-size: 0.85rem;
+            margin-right: 15px;
+        }
+
+        .product-specs span strong {
+            color: #ff9600;
+        }
+
+        .product-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #00a8ff, #ff6b9d);
+            color: #ffffff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .product-btn:hover {
+            background: linear-gradient(90deg, #ff6b9d, #ffcc00);
+            transform: scale(1.02);
+        }
+
+        /* 关于我们 */
+        .about {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, #fff5f0, #f0f8ff);
+            margin-top: 60px;
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content h2 {
+            color: #ff6b9d;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: #6a7a8a;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* 底部 */
+        .footer {
+            text-align: center;
+            padding: 40px 5%;
+            background: linear-gradient(90deg, #00a8ff, #ff6b9d);
+            color: #ffffff;
+            font-size: 0.9rem;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <nav class="nav">
+            <a href="mufet_products.html" class="logo">
+                <img src="logo.jpg" alt="沐非特科技 Logo" onerror="this.style.display='none'">
+                MOSFET<span> TECH</span>
+            </a>
+            <div class="nav-links">
+                <a href="#products" data-i18n="nav-products">产品中心</a>
+                <a href="#contact" data-i18n="nav-contact">联系我们</a>
+                <select id="lang-switch" onchange="switchLanguage(this.value)">
+                    <option value="zh">中文</option>
+                    <option value="en">English</option>
+                    <option value="ja">日本語</option>
+                    <option value="ko">한국어</option>
+                </select>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero 区域 -->
+    <section class="hero">
+        <div class="hero-logo">
+            <img src="logo.jpg" alt="沐非特科技 Logo" onerror="this.style.display='none'">
+        </div>
+        <h1 data-i18n="hero-title">智能科技 · 创新未来</h1>
+        <p data-i18n="hero-desc">沐非特科技，专注于研发高端智能电子产品，以创新驱动未来，用科技改变生活</p>
+        <div class="hero-cta">
+            <a href="recruitment.html" class="btn btn-primary" data-i18n="hero-cta-join">🎯 加入我们</a>
+            <a href="#products" class="btn btn-secondary" data-i18n="hero-cta-products">📦 浏览产品</a>
+        </div>
+    </section>
+
+    <!-- 产品展示 -->
+    <section class="products" id="products">
+        <div class="section-title">
+            <h2 data-i18n="products-title">产品中心</h2>
+            <p data-i18n="products-desc">探索我们的智能产品系列</p>
+        </div>
+
+        <div class="product-grid">
+            <!-- 产品 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span>🎧</span>
+                </div>
+                <div class="product-content">
+                    <span class="tag" data-i18n="product1-tag">智能音频</span>
+                    <h3 data-i18n="product1-name">MF-01 智能降噪耳机</h3>
+                    <p data-i18n="product1-desc">采用先进的主动降噪技术，搭载AI自适应算法，实现精准环境声识别。40小时超长续航，支持快充，音质纯净，佩戴舒适。</p>
+                    <div class="product-specs">
+                        <span><strong data-i18n="product1-spec1">续航:</strong> 40小时</span>
+                        <span><strong data-i18n="product1-spec2">降噪深度:</strong> -45dB</span>
+                    </div>
+                    <a href="#" class="product-btn" data-i18n="product1-btn">了解详情</a>
+                </div>
+            </div>
+
+            <!-- 产品 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span>⌚</span>
+                </div>
+                <div class="product-content">
+                    <span class="tag" data-i18n="product2-tag">智能穿戴</span>
+                    <h3 data-i18n="product2-name">MF-Watch Pro 智能手表</h3>
+                    <p data-i18n="product2-desc">全天候健康监测，心率、血氧、睡眠分析一应俱全。1.45英寸AMOLED高清屏，IP68防水等级，50+运动模式，是你贴心的健康助手。</p>
+                    <div class="product-specs">
+                        <span><strong data-i18n="product2-spec1">屏幕:</strong> 1.45" AMOLED</span>
+                        <span><strong data-i18n="product2-spec2">续航:</strong> 14天</span>
+                    </div>
+                    <a href="#" class="product-btn" data-i18n="product2-btn">了解详情</a>
+                </div>
+            </div>
+
+            <!-- 产品 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span>🔌</span>
+                </div>
+                <div class="product-content">
+                    <span class="tag" data-i18n="product3-tag">智能家居</span>
+                    <h3 data-i18n="product3-name">MF-Smart 智能插座</h3>
+                    <p data-i18n="product3-desc">Wi-Fi+蓝牙双模连接，支持语音控制与APP远程操控。实时功率监测，自动断电保护，定时任务设置，让家居更智能更安全。</p>
+                    <div class="product-specs">
+                        <span><strong data-i18n="product3-spec1">最大负载:</strong> 2500W</span>
+                        <span><strong data-i18n="product3-spec2">连接:</strong> Wi-Fi + BT</span>
+                    </div>
+                    <a href="#" class="product-btn" data-i18n="product3-btn">了解详情</a>
+                </div>
+            </div>
+
+            <!-- 产品 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span>📱</span>
+                </div>
+                <div class="product-content">
+                    <span class="tag" data-i18n="product4-tag">移动电源</span>
+                    <h3 data-i18n="product4-name">MF-Power Ultra 移动电源</h3>
+                    <p data-i18n="product4-desc">20000mAh超大容量，支持100W双向快充。采用车规级电芯，多重安全保护，轻薄便携。USB-C+USB-A双口输出，同时充两台设备。</p>
+                    <div class="product-specs">
+                        <span><strong data-i18n="product4-spec1">容量:</strong> 20000mAh</span>
+                        <span><strong data-i18n="product4-spec2">输出:</strong> 100W</span>
+                    </div>
+                    <a href="#" class="product-btn" data-i18n="product4-btn">了解详情</a>
+                </div>
+            </div>
+
+            <!-- 产品 5 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span>📹</span>
+                </div>
+                <div class="product-content">
+                    <span class="tag" data-i18n="product5-tag">智能家居</span>
+                    <h3 data-i18n="product5-name">MF-Cam 360 智能摄像头</h3>
+                    <p data-i18n="product5-desc">1080P高清画质，360°全景旋转，支持夜视与AI人形检测。双向语音通话，移动推送告警，云存储+本地存储双重保障。</p>
+                    <div class="product-specs">
+                        <span><strong data-i18n="product5-spec1">画质:</strong> 1080P</span>
+                        <span><strong data-i18n="product5-spec2">夜视:</strong> 10米红外</span>
+                    </div>
+                    <a href="#" class="product-btn" data-i18n="product5-btn">了解详情</a>
+                </div>
+            </div>
+
+            <!-- 产品 6 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span>🎮</span>
+                </div>
+                <div class="product-content">
+                    <span class="tag" data-i18n="product6-tag">游戏外设</span>
+                    <h3 data-i18n="product6-name">MF-Game 游戏手柄</h3>
+                    <p data-i18n="product6-desc">精准的摇杆算法，低延迟2.4G无线连接，支持多平台兼容。人体工学设计，长时间游戏不疲劳。RGB自定义灯光，炫酷外观。</p>
+                    <div class="product-specs">
+                        <span><strong data-i18n="product6-spec1">连接:</strong> 2.4G无线</span>
+                        <span><strong data-i18n="product6-spec2">续航:</strong> 25小时</span>
+                    </div>
+                    <a href="#" class="product-btn" data-i18n="product6-btn">了解详情</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2 data-i18n="about-title">关于沐非特</h2>
+            <p data-i18n="about-desc">沐非特科技有限公司成立于2025年，专注于智能电子产品的研发与创新。我们拥有一支经验丰富的技术团队，在音频算法、智能穿戴、物联网等领域深耕多年。公司秉承"科技服务生活"的理念，持续推出高品质、高性价比的智能产品，为用户带来便捷、舒适的科技体验。</p>
+        </div>
+    </section>
+
+    <!-- 底部 -->
+    <footer class="footer" id="contact">
+        <p data-i18n="footer-copyright">© 2026 沐非特科技有限公司 | MOSFET TECHNOLOGY</p>
+        <p data-i18n="footer-contact">联系方式：2258438065@qq.com | 电话：18186023396</p>
+        <p data-i18n="footer-contact2">联系人：曾少通</p>
+        <p data-i18n="footer-address">地址：上海市奉贤区莘奉公路4869号1层</p>
+    </footer>
+
+    <script>
+        const translations = {
+            zh: {
+                "nav-products": "产品中心",
+                "nav-contact": "联系我们",
+                "hero-title": "智能科技 · 创新未来",
+                "hero-desc": "沐非特科技，专注于研发高端智能电子产品，以创新驱动未来，用科技改变生活",
+                "hero-cta-join": "🎯 加入我们",
+                "hero-cta-products": "📦 浏览产品",
+                "products-title": "产品中心",
+                "products-desc": "探索我们的智能产品系列",
+                "about-title": "关于沐非特",
+                "about-desc": "沐非特科技有限公司成立于2025年，专注于智能电子产品的研发与创新。我们拥有一支经验丰富的技术团队，在音频算法、智能穿戴、物联网等领域深耕多年。公司秉承\"科技服务生活\"的理念，持续推出高品质、高性价比的智能产品，为用户带来便捷、舒适的科技体验。",
+                "footer-copyright": "© 2026 沐非特科技有限公司 | MOSFET TECHNOLOGY",
+                "footer-contact": "联系方式：2258438065@qq.com | 电话：18186023396",
+                "footer-contact2": "联系人：曾少通",
+                "footer-address": "地址：上海市奉贤区莘奉公路4869号1层",
+                "product1-tag": "智能音频",
+                "product1-name": "MF-01 智能降噪耳机",
+                "product1-desc": "采用先进的主动降噪技术，搭载AI自适应算法，实现精准环境声识别。40小时超长续航，支持快充，音质纯净，佩戴舒适。",
+                "product1-spec1": "续航: 40小时",
+                "product1-spec2": "降噪深度: -45dB",
+                "product1-btn": "了解详情",
+                "product2-tag": "智能穿戴",
+                "product2-name": "MF-Watch Pro 智能手表",
+                "product2-desc": "全天候健康监测，心率、血氧、睡眠分析一应俱全。1.45英寸AMOLED高清屏，IP68防水等级，50+运动模式，是你贴心的健康助手。",
+                "product2-spec1": "屏幕: 1.45\" AMOLED",
+                "product2-spec2": "续航: 14天",
+                "product2-btn": "了解详情",
+                "product3-tag": "智能家居",
+                "product3-name": "MF-Smart 智能插座",
+                "product3-desc": "Wi-Fi+蓝牙双模连接，支持语音控制与APP远程操控。实时功率监测，自动断电保护，定时任务设置，让家居更智能更安全。",
+                "product3-spec1": "最大负载: 2500W",
+                "product3-spec2": "连接: Wi-Fi + BT",
+                "product3-btn": "了解详情",
+                "product4-tag": "移动电源",
+                "product4-name": "MF-Power Ultra 移动电源",
+                "product4-desc": "20000mAh超大容量，支持100W双向快充。采用车规级电芯，多重安全保护，轻薄便携。USB-C+USB-A双口输出，同时充两台设备。",
+                "product4-spec1": "容量: 20000mAh",
+                "product4-spec2": "输出: 100W",
+                "product4-btn": "了解详情",
+                "product5-tag": "智能家居",
+                "product5-name": "MF-Cam 360 智能摄像头",
+                "product5-desc": "1080P高清画质，360°全景旋转，支持夜视与AI人形检测。双向语音通话，移动推送告警，云存储+本地存储双重保障。",
+                "product5-spec1": "画质: 1080P",
+                "product5-spec2": "夜视: 10米红外",
+                "product5-btn": "了解详情",
+                "product6-tag": "游戏外设",
+                "product6-name": "MF-Game 游戏手柄",
+                "product6-desc": "精准的摇杆算法，低延迟2.4G无线连接，支持多平台兼容。人体工学设计，长时间游戏不疲劳。RGB自定义灯光，炫酷外观。",
+                "product6-spec1": "连接: 2.4G无线",
+                "product6-spec2": "续航: 25小时",
+                "product6-btn": "了解详情"
+            },
+            en: {
+                "nav-products": "Products",
+                "nav-contact": "Contact",
+                "hero-title": "Smart Technology · Innovative Future",
+                "hero-desc": "Mufet Technology is dedicated to developing high-end smart electronic products, driving the future with innovation and changing lives with technology",
+                "hero-cta-join": "🎯 Join Us",
+                "hero-cta-products": "📦 Browse Products",
+                "products-title": "Product Center",
+                "products-desc": "Explore our smart product series",
+                "about-title": "About Mufet",
+                "about-desc": "Mufet Technology Co., Ltd. was established in 2025, focusing on the R&D and innovation of smart electronic products. We have an experienced technical team with years of deep expertise in audio algorithms, smart wearables, and IoT. Upholding the philosophy of \"Technology Serves Life\", we continuously launch high-quality, cost-effective smart products, bringing convenient and comfortable tech experiences to users.",
+                "footer-copyright": "© 2026 Mufet Technology Co., Ltd. | MOSFET TECHNOLOGY",
+                "footer-contact": "Contact: 2258438065@qq.com | Tel: 18186023396",
+                "footer-contact2": "Contact Person: Zeng Shaotong",
+                "footer-address": "Address: 1st Floor, No. 4869, Xinfeng Road, Fengxian District, Shanghai",
+                "product1-tag": "Smart Audio",
+                "product1-name": "MF-01 Smart Noise-Canceling Headphones",
+                "product1-desc": "Featuring advanced active noise cancellation and AI adaptive algorithms for precise ambient sound recognition. 40-hour ultra-long battery, fast charging support, pure sound quality, and comfortable fit.",
+                "product1-spec1": "Battery: 40 hours",
+                "product1-spec2": "ANC Depth: -45dB",
+                "product1-btn": "Learn More",
+                "product2-tag": "Smart Wearables",
+                "product2-name": "MF-Watch Pro Smart Watch",
+                "product2-desc": "24/7 health monitoring with heart rate, blood oxygen, and sleep analysis. 1.45\" AMOLED HD display, IP68 waterproof, 50+ sports modes — your intimate health assistant.",
+                "product2-spec1": "Screen: 1.45\" AMOLED",
+                "product2-spec2": "Battery: 14 days",
+                "product2-btn": "Learn More",
+                "product3-tag": "Smart Home",
+                "product3-name": "MF-Smart Smart Plug",
+                "product3-desc": "Wi-Fi + Bluetooth dual-mode connection, supports voice control and APP remote operation. Real-time power monitoring, auto shutoff protection, timer settings — make your home smarter and safer.",
+                "product3-spec1": "Max Load: 2500W",
+                "product3-spec2": "Connection: Wi-Fi + BT",
+                "product3-btn": "Learn More",
+                "product4-tag": "Power Bank",
+                "product4-name": "MF-Power Ultra Power Bank",
+                "product4-desc": "20000mAh ultra-large capacity, supports 100W bidirectional fast charging. Uses automotive-grade battery cells, multiple safety protections, thin and portable. USB-C + USB-A dual output for charging two devices simultaneously.",
+                "product4-spec1": "Capacity: 20000mAh",
+                "product4-spec2": "Output: 100W",
+                "product4-btn": "Learn More",
+                "product5-tag": "Smart Home",
+                "product5-name": "MF-Cam 360 Smart Camera",
+                "product5-desc": "1080P HD quality, 360° panoramic rotation, supports night vision and AI human detection. Two-way voice calls, motion push alerts, dual storage with cloud and local options.",
+                "product5-spec1": "Resolution: 1080P",
+                "product5-spec2": "Night Vision: 10m IR",
+                "product5-btn": "Learn More",
+                "product6-tag": "Gaming Peripherals",
+                "product6-name": "MF-Game Game Controller",
+                "product6-desc": "Precise joystick algorithms, low-latency 2.4G wireless connection, multi-platform compatibility. Ergonomic design for comfortable extended gaming. Customizable RGB lighting, stylish appearance.",
+                "product6-spec1": "Connection: 2.4G Wireless",
+                "product6-spec2": "Battery: 25 hours",
+                "product6-btn": "Learn More"
+            },
+            ja: {
+                "nav-products": "製品",
+                "nav-contact": "お問い合わせ",
+                "hero-title": "スマートテクノロジー・革新の未来",
+                "hero-desc": "MUFETテクノロジーは、高機能スマート電子製品の研究開発に特化し、イノベーションで未来を駆動し、テクノロジーで生活を変革します",
+                "hero-cta-join": "🎯 我々に参加",
+                "hero-cta-products": "📦 製品を見る",
+                "products-title": "製品センター",
+                "products-desc": "私たちのスマート製品シリーズをご覧ください",
+                "about-title": "MUFETについて",
+                "about-desc": "MUFETテクノロジー株式会社は2025年に設立され、スマート電子製品の研究開発と革新に注力しています。オーディオアルゴリズム、スマートウェアラブル、IoT分野で長年の深い専門知識を持つ経験豊富な技術チームが在籍しています。「テクノロジーが生活を支える」という理念を持ち、高品質でコストパフォーマンスの良いスマート製品を継続的に展開し、ユーザーに便利で快適なテクノロジー体験を提供しています。",
+                "footer-copyright": "© 2026 MUFETテクノロジー株式会社 | MOSFETテクノロジー",
+                "footer-contact": "連絡先：2258438065@qq.com | 電話：18186023396",
+                "footer-contact2": "担当者：曾少通",
+                "footer-address": "住所：上海市奉賢区莘奉公路4869号1階",
+                "product1-tag": "スマートオーディオ",
+                "product1-name": "MF-01 スマートノイズキャンセリングイヤホン",
+                "product1-desc": "高度なアクティブノイズキャンセリング技術とAI適応アルゴリズムを搭載し、正確な環境音識識を実現します。40時間の長時間駆動、急速充電対応、純粋な音質、快適な装着感。",
+                "product1-spec1": "駆動時間: 40時間",
+                "product1-spec2": "ノイズキャンセリング: -45dB",
+                "product1-btn": "詳細を見る",
+                "product2-tag": "スマートウェアラブル",
+                "product2-name": "MF-Watch Pro スマートウォッチ",
+                "product2-desc": "24時間健康管理、心拍数、血中酸素、睡眠分析を網羅。1.45インチAMOLED HDディスプレイ、IP68防水、50種以上のスポーツモード、あなたの健康パートナー。",
+                "product2-spec1": "画面: 1.45\" AMOLED",
+                "product2-spec2": "駆動時間: 14日",
+                "product2-btn": "詳細を見る",
+                "product3-tag": "スマートホーム",
+                "product3-name": "MF-Smart スマートコンセント",
+                "product3-desc": "Wi-Fi+Bluetoothデュアルモード接続、音声制御とアプリ遠隔操作をサポート。リアルタイム電力監視、自動遮断保護、タイマー設定、スマートで安全なホームを実現。",
+                "product3-spec1": "最大負荷: 2500W",
+                "product3-spec2": "接続: Wi-Fi + BT",
+                "product3-btn": "詳細を見る",
+                "product4-tag": "モバイルバッテリー",
+                "product4-name": "MF-Power Ultra モバイルバッテリー",
+                "product4-desc": "20000mAh超大容量、100W双方向急速充電対応。車載級バッテリーセル採用、多重安全保護、薄型軽量。USB-C+USB-Aデュアル出力、2台同時充電対応。",
+                "product4-spec1": "容量: 20000mAh",
+                "product4-spec2": "出力: 100W",
+                "product4-btn": "詳細を見る",
+                "product5-tag": "スマートホーム",
+                "product5-name": "MF-Cam 360 スマートカメラ",
+                "product5-desc": "1080P HD画質、360°パノラマ回転、暗視モードとAI人物検出をサポート。双方向通話、動体検知通知、クラウド+ローカルダブル保存。",
+                "product5-spec1": "画質: 1080P",
+                "product5-spec2": "暗視: 10m赤外線",
+                "product5-btn": "詳細を見る",
+                "product6-tag": "ゲーム周辺機器",
+                "product6-name": "MF-Game ゲームコントローラー",
+                "product6-desc": "精密なジョイスティックアルゴリズム、低遅延2.4Gワイヤレス接続、マルチプラットフォーム対応。人間工学設計、長時間ゲームでも快適。RGBカスタムライティング、スタイリッシュな外観。",
+                "product6-spec1": "接続: 2.4Gワイヤレス",
+                "product6-spec2": "駆動時間: 25時間",
+                "product6-btn": "詳細を見る"
+            },
+            ko: {
+                "nav-products": "제품",
+                "nav-contact": "연락처",
+                "hero-title": "스마트 기술 · 혁신의 미래",
+                "hero-desc": "MUFET 테크놀로지는 고성능 스마트 전자제품 연구개발에 전념하며, 혁신으로 미래를 이끌고 기술로 생활을 변화시킵니다",
+                "hero-cta-join": "🎯 우리와 함께",
+                "hero-cta-products": "📦 제품 보기",
+                "products-title": "제품 센터",
+                "products-desc": "우리의 스마트 제품 시리즈를 탐험해보세요",
+                "about-title": "MUFET 소개",
+                "about-desc": "MUFET 테크놀로지는 2025년에 설립되어 스마트 전자제품의 연구개발과 혁신에 주력하고 있습니다. 오디오 알고리즘, 스마트 웨어러블, IoT 분야에서 수년간 심도있는 전문지식을 가진 경험 많은 기술팀이 있습니다. '기술이 삶을 서비스한다'는 철학을 가지고, 고품질의 가성비 좋은 스마트 제품을 지속적으로 출시하며, 사용자에게 편리하고 쾌적한 기술 경험을 제공합니다.",
+                "footer-copyright": "© 2026 MUFET 테크놀로지 주식회사 | MOSFET 테크놀로지",
+                "footer-contact": "연락처: 2258438065@qq.com | 전화: 18186023396",
+                "footer-contact2": "담당자: 曾少通",
+                "footer-address": "주소: 상하이시 봉현구 심봉공로 4869호 1층",
+                "product1-tag": "스마트 오디오",
+                "product1-name": "MF-01 스마트 노이즈 캔슬링 헤드폰",
+                "product1-desc": "고도화된 능동형 노이즈 캔슬링 기술과 AI 적응형 알고리즘 탑재로 정확한 환경음 인식을 실현합니다. 40시간 초장시간 배터리, 급속 충전 지원, 순수한 음질, 편안한 착용감.",
+                "product1-spec1": "배터리: 40시간",
+                "product1-spec2": "노이즈 캔슬링: -45dB",
+                "product1-btn": "자세히 보기",
+                "product2-tag": "스마트 웨어러블",
+                "product2-name": "MF-Watch Pro 스마트 워치",
+                "product2-desc": "24시간 건강 모니터링, 심박수, 혈중산소, 수면 분석 완비. 1.45인치 AMOLED HD 디스플레이, IP68 방수, 50개 이상의 스포츠 모드, 당신의 건강 파트너.",
+                "product2-spec1": "화면: 1.45\" AMOLED",
+                "product2-spec2": "배터리: 14일",
+                "product2-btn": "자세히 보기",
+                "product3-tag": "스마트 홈",
+                "product3-name": "MF-Smart 스마트 콘센트",
+                "product3-desc": "Wi-Fi+Bluetooth 듀얼 모드 연결, 음성 제어와 앱 원격 조작 지원. 실시간 전력 모니터링, 자동 차단 보호, 타이머 설정, 스마트하고 안전한 홈 실현.",
+                "product3-spec1": "최대 부하: 2500W",
+                "product3-spec2": "연결: Wi-Fi + BT",
+                "product3-btn": "자세히 보기",
+                "product4-tag": "모바일 배터리",
+                "product4-name": "MF-Power Ultra 모바일 배터리",
+                "product4-desc": "20000mAh 초대용량, 100W 양방향 급속 충전 지원. 차량용급 배터리 셀 채용, 다중 안전 보호, 얇고 가벼움. USB-C+USB-A 듀얼 출력, 2대 동시 충전 지원.",
+                "product4-spec1": "용량: 20000mAh",
+                "product4-spec2": "출력: 100W",
+                "product4-btn": "자세히 보기",
+                "product5-tag": "스마트 홈",
+                "product5-name": "MF-Cam 360 스마트 카메라",
+                "product5-desc": "1080P HD 화질, 360° 파노라마 회전, 야시 모드와 AI 인물 감지 지원. 양방향 음성 통화, 움직임 감지 알림, 클라우드+로컬 이중 저장.",
+                "product5-spec1": "화질: 1080P",
+                "product5-spec2": "야시: 10m 적외선",
+                "product5-btn": "자세히 보기",
+                "product6-tag": "게임 주변기기",
+                "product6-name": "MF-Game 게임 컨트롤러",
+                "product6-desc": "정밀한 조이스틱 알고리즘, 저지연 2.4G 무선 연결, 멀티 플랫폼 호환. 인체공학 디자인, 장시간 게임도 편안. RGB 커스텀 라이트, 세련된 외관.",
+                "product6-spec1": "연결: 2.4G 무선",
+                "product6-spec2": "배터리: 25시간",
+                "product6-btn": "자세히 보기"
+            }
+        };
+
+        function switchLanguage(lang) {
+            const trans = translations[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (trans[key]) {
+                    el.textContent = trans[key];
+                }
+            });
+            localStorage.setItem('lang', lang);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('lang') || 'zh';
+            document.getElementById('lang-switch').value = savedLang;
+            switchLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>
