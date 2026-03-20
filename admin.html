@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理后台 - 沐非特科技</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+
+        /* 顶部导航 */
+        .header {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .header a {
+            color: #666;
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+
+        .header a:hover {
+            color: #0096ff;
+        }
+
+        /* 主内容区 */
+        .main {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 0 20px;
+        }
+
+        /* 卡片 */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e8ecf1;
+        }
+
+        /* 表单 */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e8ecf1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0096ff;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* 按钮 */
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0096ff, #00d4ff);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 150, 255, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #4caf50, #8bc34a);
+            color: white;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #f44336, #e57373);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+        }
+
+        /* 消息提示 */
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* 当前值显示 */
+        .current-value {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .current-value h3 {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .current-value p {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 登录提示 */
+        #loginPrompt {
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        #loginPrompt h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        #loginPrompt p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        /* 加载状态 */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .loading::after {
+            content: '加载中...';
+        }
+    </style>
+</head>
+<body>
+    <!-- 登录提示 -->
+    <div id="loginPrompt" style="display: none;">
+        <h2>🔒 请先登录</h2>
+        <p>您需要登录才能访问管理后台</p>
+        <a href="login.html" class="btn btn-primary">前往登录</a>
+    </div>
+
+    <!-- 管理后台 -->
+    <div id="adminPanel" style="display: none;">
+        <div class="header">
+            <h1>👨‍💼 管理后台</h1>
+            <div>
+                <span id="userEmail"></span>
+                <a href="mufet_products.html">🏠 返回首页</a>
+                <a href="#" onclick="logout()">🚪 退出</a>
+            </div>
+        </div>
+
+        <div class="main">
+            <!-- 消息提示 -->
+            <div id="message" class="message"></div>
+
+            <!-- 产品管理 -->
+            <div class="card">
+                <h2>📦 产品信息管理</h2>
+                <div id="loading" class="loading"></div>
+                
+                <div class="current-value">
+                    <h3>当前产品信息：</h3>
+                    <p id="currentProducts">加载中...</p>
+                </div>
+
+                <form id="productsForm">
+                    <div class="form-group">
+                        <label>产品 1 名称</label>
+                        <input type="text" id="prod1Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>产品 1 描述</label>
+                        <textarea id="prod1Desc" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>产品 2 名称</label>
+                        <input type="text" id="prod2Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>产品 2 描述</label>
+                        <textarea id="prod2Desc" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">💾 保存产品信息</button>
+                </form>
+            </div>
+
+            <!-- 招聘信息管理 -->
+            <div class="card">
+                <h2>💼 招聘信息管理</h2>
+                
+                <div class="current-value">
+                    <h3>当前招聘信息：</h3>
+                    <p id="currentRecruitment">加载中...</p>
+                </div>
+
+                <form id="recruitmentForm">
+                    <div class="form-group">
+                        <label>联系人</label>
+                        <input type="text" id="contactPerson" required>
+                    </div>
+                    <div class="form-group">
+                        <label>联系电话</label>
+                        <input type="text" id="contactPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>公司地址</label>
+                        <textarea id="companyAddress" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">💾 保存招聘信息</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+        import { getDatabase, ref, get, set, onValue } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+
+        // Firebase 配置
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase(app);
+
+        // DOM 元素
+        const loginPrompt = document.getElementById('loginPrompt');
+        const adminPanel = document.getElementById('adminPanel');
+        const userEmail = document.getElementById('userEmail');
+        const messageDiv = document.getElementById('message');
+        const loadingDiv = document.getElementById('loading');
+
+        // 检查登录状态
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // 已登录，显示管理后台
+                loginPrompt.style.display = 'none';
+                adminPanel.style.display = 'block';
+                userEmail.textContent = user.email;
+                loadCurrentData();
+            } else {
+                // 未登录，显示登录提示
+                loginPrompt.style.display = 'block';
+                adminPanel.style.display = 'none';
+            }
+        });
+
+        // 显示消息
+        function showMessage(text, type) {
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.display = 'block';
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        // 加载当前数据
+        function loadCurrentData() {
+            loadingDiv.style.display = 'block';
+
+            const productsRef = ref(db, 'products');
+            const recruitmentRef = ref(db, 'recruitment');
+
+            // 监听产品数据变化
+            onValue(productsRef, (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    document.getElementById('currentProducts').textContent = 
+                        `产品1: ${data.prod1Name} - ${data.prod1Desc}\n产品2: ${data.prod2Name} - ${data.prod2Desc}`;
+                    document.getElementById('prod1Name').value = data.prod1Name || '';
+                    document.getElementById('prod1Desc').value = data.prod1Desc || '';
+                    document.getElementById('prod2Name').value = data.prod2Name || '';
+                    document.getElementById('prod2Desc').value = data.prod2Desc || '';
+                }
+            });
+
+            // 监听招聘数据变化
+            onValue(recruitmentRef, (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    document.getElementById('currentRecruitment').textContent = 
+                        `联系人: ${data.contactPerson}\n电话: ${data.contactPhone}\n地址: ${data.companyAddress}`;
+                    document.getElementById('contactPerson').value = data.contactPerson || '';
+                    document.getElementById('contactPhone').value = data.contactPhone || '';
+                    document.getElementById('companyAddress').value = data.companyAddress || '';
+                }
+                loadingDiv.style.display = 'none';
+            });
+        }
+
+        // 保存产品信息
+        document.getElementById('productsForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const productsData = {
+                prod1Name: document.getElementById('prod1Name').value,
+                prod1Desc: document.getElementById('prod1Desc').value,
+                prod2Name: document.getElementById('prod2Name').value,
+                prod2Desc: document.getElementById('prod2Desc').value,
+                updatedAt: new Date().toISOString()
+            };
+
+            try {
+                await set(ref(db, 'products'), productsData);
+                showMessage('产品信息保存成功！', 'success');
+            } catch (error) {
+                console.error('保存失败:', error);
+                showMessage('保存失败，请稍后再试', 'error');
+            }
+        });
+
+        // 保存招聘信息
+        document.getElementById('recruitmentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const recruitmentData = {
+                contactPerson: document.getElementById('contactPerson').value,
+                contactPhone: document.getElementById('contactPhone').value,
+                companyAddress: document.getElementById('companyAddress').value,
+                updatedAt: new Date().toISOString()
+            };
+
+            try {
+                await set(ref(db, 'recruitment'), recruitmentData);
+                showMessage('招聘信息保存成功！', 'success');
+            } catch (error) {
+                console.error('保存失败:', error);
+                showMessage('保存失败，请稍后再试', 'error');
+            }
+        });
+
+        // 退出登录
+        window.logout = async () => {
+            await signOut(auth);
+            window.location.href = 'login.html';
+        };
+    </script>
+</body>
+</html>

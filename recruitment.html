@@ -349,6 +349,7 @@
                 <a href="mufet_products.html#products" data-i18n="nav-products">产品中心</a>
                 <a href="mufet_products.html" data-i18n="nav-about">返回主页</a>
                 <a href="mufet_products.html#contact" data-i18n="nav-contact">联系我们</a>
+                <a href="login.html" id="loginBtn">🔐 登录</a>
                 <select id="lang-switch" onchange="switchLanguage(this.value)">
                     <option value="zh">中文</option>
                     <option value="en">English</option>
@@ -487,6 +488,48 @@
         <p data-i18n="footer-contact2">联系人：曾少通</p>
         <p data-i18n="footer-address">地址：上海市奉贤区莘奉公路4869号1层</p>
     </footer>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+
+        // Firebase 配置
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // 检查登录状态
+        const loginBtn = document.getElementById('loginBtn');
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // 已登录，显示登录管理按钮
+                if (loginBtn) {
+                    loginBtn.innerHTML = '👤 ' + (user.email.split('@')[0]) + ' | 🚪 退出';
+                    loginBtn.href = '#';
+                    loginBtn.onclick = async () => {
+                        await signOut(auth);
+                        window.location.reload();
+                    };
+                }
+            } else {
+                // 未登录，显示登录按钮
+                if (loginBtn) {
+                    loginBtn.innerHTML = '🔐 登录';
+                    loginBtn.href = 'login.html';
+                    loginBtn.onclick = null;
+                }
+            }
+        });
+    </script>
 
     <script>
         // 语言切换配置
